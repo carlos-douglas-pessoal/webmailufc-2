@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="columns is-multiline">
+  <div class="column is-centered is-12" style="text-align:center">
+    <h1 class="title has-text-success">Sua conta institucional foi criada!</h1>
+  </div>
+  <div class="column is-12">
+    <div class="field card-usuario" style="text-align:center;padding-top:1em;padding-bottom:1em">
+      <h3>
+        <strong>{{email}}</strong>
+      </h3>
+      <div>
+        senha: <strong style="color:#05AEDA">{{password}}</strong>
+      </div>
+    </div>
+  </div>
+  <div class="column is-12" style="text-align:center">
+     Acesse <a href="http://mail.ufc.br/" target="_blank" style="color:#3483FA">aqui</a> seu email.
+  </div>
+  <div class="column is-12" style="text-align:center">
+     <b-icon pack="fas" icon="exclamation" size="is-small"></b-icon>  Esta é uma senha provisória que será usada no primeiro acesso.
+  </div>
+</div>
+{% endblock %}

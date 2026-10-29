@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <h1 class="title has-text-grey-darker is-centered" style="text-align:center">Vínculo</h1>
+    <p style="text-align:justify">Selecione um vínculo com a universidade:</p>
+</div>
+
+<section class="section">
+    <div class="link-vinculo" style="border: 2px dashed #e1e1e1;padding:13px">
+        <a class="columns is-mobile" style="background-color:#f9fbfd" href="/vinculos/?tipo=discente">
+            <div class="column is-2">
+                <span class="icon has-text-info">
+                    <i class="fas fa-user-graduate"></i>
+                </span>
+            </div>
+            <div class="column">
+                Discente (@alu.ufc.br)
+            </div>
+        </a>
+        <a class="columns is-mobile" style="background-color:#f9fbfd" href="/vinculos/?tipo=servidor">
+            <div class="column is-2">
+                <span class="icon has-text-info">
+                    <i class="fas fa-user-tie"></i>
+                </span>
+            </div>
+            <div class="column">
+                Servidor (@ufc.br)
+            </div>
+        </a>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load json_filters %}
+{% load static %}
+
+
+{% block base_imports %}
+
+{% comment %} <script src="https://unpkg.com/vue-select@latest"></script> {% endcomment %}
+<link rel="stylesheet" href="https://unpkg.com/vue-select@latest/dist/vue-select.css">
+{% comment %} <script src="{% static 'js/vue-spinner/vue-spinner.min.js' %}"></script> {% endcomment %}
+{% endblock %}
+
+{% block content %}
+{% comment %} <redefine-view contas="{{contas|jsonify}}" fullnome="{{request.user.first_name}}" inline-template>
+    {% endcomment %}
+    <div>
+        <div class="container">
+            <h1 class="title has-text-grey-darker is-centered" style="text-align:center">Redefinir informações</h1>
+            <p style="text-align:justify">Você pode alterar senha ou redefinir suas informações pessoais.</p>
+        </div>
+        <div class="field card-usuario">
+            <dados ref="dados_" contas="{{contas|jsonify}}" nome="{{request.user.usuario_pessoa.full_nome}}"
+                cpf="{{request.user.usuario_pessoa.cpf_text}}" />
+        </div>
+        {% if contas|length > 1 %}
+        <div class="field">
+            <label class="label">Você possui <strong>{{contas|length}}</strong> e-mails cadastrados.</label>
+            <div class="control">
+                <v-select class="is-hidden-mobile" :options="accounts" @input="whenChange" label="email"
+                    v-model="account"></v-select>
+                <div class="select is-hidden-desktop is-fullwidth">
+                    <select v-model="account">
+                        {% for conta in contas %}
+                            <option value="{{conta.email}}">{{conta.email}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        <div class="content" style="text-align:center">
+            {% comment %} {% if contas|length == 1 %}
+            <label class="label">
+                <% account.email %>
+            </label>
+            {% endif %} {% endcomment %}
+            <div class="field">
+                <p class="control">
+                    <b-button type="is-primary" :disabled="account == null || account == undefined"
+                        @click="changePassword()" expanded>
+                        Alterar Senha
+                    </b-button>
+                    {% csrf_token %}
+                </p>
+                <p class="control">
+                    <b-button type="is-primary" :disabled="account == null || account == undefined" @click="cardModal()"
+                        expanded>
+                        Alterar Dados Pessoais
+                    </b-button>
+                </p>
+                {% if has_outros_vinculos or has_outros_emails %}
+                <p class="control">
+                    <a class="button is-primary is-fullwidth" href="/vinculos/">Voltar</a>
+                </p>
+                {% endif %}
+                <p class="control">
+                    <a class="button is-primary is-fullwidth" href="/logout/">Sair</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    {% comment %} </redefine-view> {% endcomment %}
+{% endblock %}

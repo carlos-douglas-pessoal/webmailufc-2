@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<form action="/login/" method="post" enctype="multipart/form-data">
+    <div style="text-align:center">
+        <img src="https://webmail.ufc.br/imagens/suporte_a{% if 'alu' in request.META.HTTP_HOST %}alu{% else %}ufc{% endif %}.png">
+    </div>
+    <b-field label="Login">
+        <b-input type="text" class="is-danger" name="login" placeholder="CPF ou login do SIGAA/SIGRH" required></b-input>
+    </b-field>
+    <b-field label="Senha">
+        <b-input type="password" name="senha" password-reveal placeholder="Senha do SIGAA/SIGRH" required></b-input>
+    </b-field>
+    <b-button type="is-primary" native-type="submit" expanded>Login</b-button>
+    {% csrf_token %} 
+</form>
+{% endblock %}

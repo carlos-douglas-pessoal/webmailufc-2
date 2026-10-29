@@ -1,0 +1,32 @@
+{% extends 'base_template.html' %}
+{% load static %}
+
+{% block base_template_block %}
+<div class="columns is-mobile is-desktop padding-desktop padding-mobile is-centered is-vcentered">
+    <div class="column is-4-desktop is-12-mobile is-8-tablet">
+        {% comment %} <template> {% endcomment %}
+            <img src="{% static 'images/suporte.png' %}">
+            <div class="box">
+                {% if request.user.is_authenticated %}
+                <div style="direction: rtl">
+                    <a href="/logout/" onMouseOver="this.style.color='#ff5983'" onMouseOut="this.style.color=''"> <i class="fas fa-sign-out-alt"></i> Sair</a>
+                </div>
+                {% endif %}
+                {% if erro %}
+                <div style="text-align:center;color:red;padding:0.5em">
+                    <b-icon icon="exclamation-circle" pack="fa" size="is-small"></b-icon> {{erro |safe}}
+                </div>
+                {% endif %}
+                <section class="section no-padding-mobile is-paddingless">
+                    {% block content %}
+                    {% endblock %}
+                </section>
+            </div>
+            <a href="http://www.ufc.br" target="_blank"><img src="{% static 'images/brasao2.png' %}"></a>
+            <img href="http://www.ufc.br" src="{% static 'images/separador.png' %}" style="top:-0.5em;position:relative">
+            <a href="https://sti.ufc.br/" target="_blank"><img src="{% static 'images/sti3.png' %}"></a>
+        {% comment %} </template> {% endcomment %}
+    </div>
+</div>
+
+{% endblock %}

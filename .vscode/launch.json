@@ -1,0 +1,30 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    //
+    // Python 3.7: the bundled debugpy in the VS Code extension no longer supports 3.7,
+    // so start the server with the venv's debugpy (1.7.x) and attach to it:
+    //   venv\Scripts\python -m debugpy --listen 5678 manage.py runserver --noreload
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python Debugger: Django (attach)",
+            "type": "debugpy",
+            "request": "attach",
+            "preLaunchTask": "django-debugpy",
+            "connect": {
+                "host": "127.0.0.1",
+                "port": 5678
+            },
+            "django": true,
+            "justMyCode": true,
+            "pathMappings": [
+                {
+                    "localRoot": "${workspaceFolder}",
+                    "remoteRoot": "${workspaceFolder}"
+                }
+            ]
+        }
+    ]
+}

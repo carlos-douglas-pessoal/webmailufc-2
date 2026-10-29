@@ -1,0 +1,75 @@
+{% comment %}
+<link rel="stylesheet" href="{% static 'css/bulma/css/bulma.css' %}"> {% endcomment %}
+<html>
+
+<head>
+  <style>
+    .grid1 {
+      display: grid;
+      grid-template-columns: auto;
+      grid-template-rows: auto;
+      gap: 1px;
+    }
+
+    .grid2 {
+      display: grid;
+      grid-template-columns: 0.1fr 0.3fr;
+      grid-template-rows: auto;
+      gap: 1px;
+    }
+  </style>
+</head>
+
+<body>
+  <table width="100%">
+    <tr colspan="1">
+      <td>Prezado(a) <strong>{{nome}}</strong>,</td>
+    </tr>
+    {% if not is_new %}
+    <tr colspan="1">
+      <td>Uma nova senha foi gerada para o e-mail {{email}}: <strong>{{password}}</strong></td>
+    </tr>
+    {% else %}
+    <tr colspan="1">
+      <td>Seu e-mail <strong> {{email}} </strong> foi criado com a senha <strong>{{password}}</strong></td>
+    </tr>
+    {% endif %}
+    <tr colspan="1">
+      <td>Esta senha é provisória. Será pedido para você criar uma nova no próximo login.</td>
+    </tr>
+    <tr colspan="1">
+      <td>Este e-mail é automático, não precisa responder.</td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <table width="100%" style="padding-top:1.5em">
+          <tr>
+            <td width="5%"><img src="https://webmail.ufc.br/imagens/g12904.png" style="width:6.5em;padding-right:0.5em"></td>
+            <td>
+              <div><strong>Secretaria de Tecnologia da Informação</strong></div>
+              <div><strong>Divisão de Redes de Computadores</strong></div>
+              <div>Tel.: {{telefone}}</div>
+            </td>
+          </tr>          
+        </table>
+      </td>
+      {% comment %} <td><img src="https://webmail.ufc.br/imagens/g12904.png" style="width:15%"></td>
+      <td>
+        <table>
+          <tr>
+            <td><strong>Secretaria de Tecnologia da Informação</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Divisão de Redes de Computadores</strong></td>
+          </tr>
+          <tr>
+            <td>Tel.: {{telefone}}</td>
+          </tr>
+        </table>
+      </td> {% endcomment %}
+    </tr>
+  </table>
+
+</body>
+
+</html>

@@ -1,0 +1,18 @@
+{% extends 'base_template.html' %}
+
+{% block base_template_block %}
+
+<section class="hero is-info handler-banner">
+  <div class="hero-body">
+    <div class="container">
+      <h5 class="title">
+        Vixi!
+      </h5>
+      <h2 class="subtitle">
+        A página "{{request.path}}" não foi encontrada.
+      </h2>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

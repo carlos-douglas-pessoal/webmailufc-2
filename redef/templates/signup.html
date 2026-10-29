@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% block content %}
+<validation-observer v-slot="{ invalid, handleSubmit }">
+<form id="form_" action="/cadastro/?tipo={{request.GET.tipo}}" method="post" enctype="multipart/form-data" @submit.prevent="handleSubmit(checkForm)" novalidate>
+    {% if show_message %}
+        <b-notification type="is-info" class="bottomleft" aria-close-label="Fechar notificação" style="text-align:center">
+            <b-icon pack="fas" icon="bullhorn" size="is-small"></b-icon><a href="{% url 'redef:redefinir' %}?tipo=discente" style="padding-left:0.5em;text-align:center">Clique aqui caso queira redefinir sua conta de aluno.</a>
+        </b-notification>
+    {% endif %}    
+    <div class="field">
+        <label class="label">Nome</label>
+        <div class="control">
+            <input class="input" type="text" value="{{ request.user.usuario_pessoa.full_nome }}"
+                {% if request.user.usuario_pessoa and request.user.usuario_pessoa.full_nome  %} v-bind:disabled="true"
+                {% endif %}>
+        </div>
+    </div>
+    {% if request.user.usuario_pessoa.cpf %}
+    <div class="field">
+        <label class="label">CPF</label>
+        <div class="control">
+            <input class="input" type="text" value="{{ request.user.usuario_pessoa.cpf_text }}"
+                {% if request.user.usuario_pessoa and request.user.usuario_pessoa.cpf %} v-bind:disabled="true"
+                {% endif %}>
+        </div>
+    </div>
+    {% endif %}
+    {% if request.GET.tipo == 'discente' and matricula %}
+    <div class="field">
+        <label class="label">Matrícula SIGAA</label>
+        <div class="control">
+            <input class="input" type="text" value="{% firstof matricula '' %}" {% if matricula %} v-bind:disabled="true" {% endif %}>
+        </div>
+    </div>
+    {% endif %}
+    {% if request.GET.tipo == 'servidor' %}
+    <div class="field">
+        <label class="label">Siape</label>
+        <div class="control">
+            <input class="input" type="text" value="{{siape}}" {% if siape %} v-bind:disabled="true" {% endif %}>
+        </div>
+    </div>
+    {% endif %}
+    <hr /> 
+    <div class="field"> 
+        <label class="label">Nome de usuário</label>    
+        <validation-provider name="Nome de usuário" :rules="{required:true,regex:emailRegex}" v-slot="validation">
+        <div class="control has-icons-right is-expanded">        
+            <input style="padding-right:6em" :class="['input',( (!validation.touched) && !validation.passed ) ? '' : (!validation.valid) ? 'is-danger' : 'is-success' ]" type="text" name="nome_usuario" v-model="nome_usuario">                                                
+            <span class="icon is-small is-right" style="width:6em">
+                <i style="font-weight:normal !important;color:black" class="fas {% if request.GET.tipo == 'servidor' %} ufc-email {% else %} ufc-email-alu {% endif %}" ></i>
+            </span>  
+            <p class="help is-danger" v-if="validation.errors.length > 0 && !validation.untouched"><% validation.errors[0]%></p>          
+        </div>
+        </validation-provider>            
+    </div>    
+    <div class="field">         
+        <label class="label">E-mail alternativo</label>
+        <validation-provider :rules="{email:true,required:true}" v-slot="validation">
+        <div class="control">
+             <input :class="['input',( (!validation.touched) && !validation.passed ) ? '' : (!validation.valid) ? 'is-danger' : 'is-success' ]" type="email" placeholder="E-mail para recuperação do e-mail {{alias}}" v-model="email_alternativo" name="email_alternativo">        
+        </div>  
+        <p class="help is-danger" v-if="validation.errors.length > 0 && !validation.untouched"><% validation.errors[0]%></p> 
+        </validation-provider>      
+    </div>
+    <div class="field">
+        <label class="label" >Telefone de recuperação (Opcional)</label>
+        <div class="control">
+           <maz-phone-number-input @update="telefone = $event.e164" :translations="phoneOptionsTranslation" />           
+        </div>
+    </div>        
+    <div class="field">   
+        <validation-provider :rules="{required:true}" v-slot="validation">     
+        <label class="label">Nome</label>
+        <div class="control">
+            <input :class="['input',( (!validation.touched) && !validation.passed ) ? '' : (!validation.valid) ? 'is-danger' : 'is-success' ]" type="text" placeholder="O nome que será cadastrado no gmail" v-model="nome" name="nome">            
+        </div> 
+        <p class="help is-danger" v-if="validation.errors.length > 0"><% validation.errors[0]%></p> 
+        <validation-provider>      
+    </div>    
+    <div class="field">
+        <validation-provider :rules="{required:true}" v-slot="validation">        
+        <label class="label">Sobrenome</label>
+        <div class="control">
+            <input :class="['input',( (!validation.touched) && !validation.passed ) ? '' : (!validation.valid) ? 'is-danger' : 'is-success' ]" type="text" placeholder="O sobrenome que será cadastrado no gmail" v-model="sobrenome" name="sobrenome">            
+        </div>  
+        <p class="help is-danger" v-if="validation.errors.length > 0"><% validation.errors[0]%></p>
+        </validation-provider>      
+    </div> 
+    <input type="hidden" name="vinculo" value="{{request.GET.tipo}}" />
+    <input type="hidden" name="telefone" :value="telefone" />
+    <div class="field">
+        <b-button type="is-primary" native-type="submit" expanded>Cadastrar</b-button>
+    </div>    
+    {% if has_outros_vinculos %}
+    <div class="field">
+        <b-button type="is-light" native-type="button" expanded @click="back()">Voltar</b-button>
+    </div> 
+    {% endif %}           
+    {% csrf_token %}    
+</form>
+</validation-observer>
+{% endblock %}

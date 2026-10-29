@@ -1,0 +1,22 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "django-debugpy",
+            "type": "shell",
+            "command": "${workspaceFolder}\\venv\\Scripts\\python.exe",
+            "args": ["-m", "debugpy", "--listen", "127.0.0.1:5678", "manage.py", "runserver", "--noreload"],
+            "options": { "cwd": "${workspaceFolder}" },
+            "isBackground": true,
+            "problemMatcher": {
+                "owner": "django",
+                "pattern": { "regexp": "^__never_matches__$" },
+                "background": {
+                    "activeBegins": true,
+                    "beginsPattern": "^.*(Watching|Performing system checks).*$",
+                    "endsPattern": "^.*(Starting development server|Quit the server with).*$"
+                }
+            }
+        }
+    ]
+}

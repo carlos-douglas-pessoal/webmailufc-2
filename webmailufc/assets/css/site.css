@@ -1,0 +1,49 @@
+html {
+    background: url('../images/bg.jpg') repeat-x fixed 0 0 !important;
+}
+
+.card-usuario {
+    background-color: #f8f8f8;
+    border: 2px dashed #e1e1e1;
+    margin: 20px 0px;
+    padding: 10px;
+}
+
+.link-vinculo>a:hover {
+    background-color: #edf1f8 !important
+}
+
+button>span>i.mdi.mdi-logout {
+    font-size: x-large;
+    border: none;
+}
+
+.sysicon {
+    border: none;
+}
+
+.handler-banner {
+    margin:0 !important;
+    position: absolute !important;
+    top: 30% !important;
+    width: 100% !important;
+}
+
+.bottomleft {
+    position: fixed !important;
+    bottom: 0px;
+    left: 0px;
+    z-index: 99;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .section{
+        padding: 10rem 1.5rem !important;
+    }
+}
+
+@media (max-width: 1024px){
+    .is-mobiled-aligned-center {
+        text-align:center;
+    }
+}

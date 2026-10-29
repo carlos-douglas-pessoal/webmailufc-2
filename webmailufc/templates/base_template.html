@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+    {% comment %} <link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css"> {% endcomment %}
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}" />
+    {% comment %} <script src="{% static 'js/vue/vue.min.js' %}"></script> {% endcomment %}
+    {% comment %} <script src="{% static 'js/buefy/buefy.js' %}"></script> {% endcomment %}
+    {% comment %} <script src="{% static 'js/vee-validate.js' %}"></script> {% endcomment %}
+    {% comment %} <script src="{% static 'js/axios/axios.min.js' %}"></script> {% endcomment %}
+    {% comment %} <script src="{% static 'js/vue-tel-input/vue-tel-input.min.js' %}"></script> {% endcomment %}
+    {% comment %} <script type="module" src="{% static 'js/vue-tour/vue-tour.umd.min.js' %}"></script> {% endcomment %}    
+    {% comment %} <link rel="stylesheet" href="{% static 'css/vue-tour/vue-tour.css' %}"> {% endcomment %}
+    {% comment %} <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}"> {% endcomment %}
+    {% block base_imports %} {% endblock %}
+    {% comment %} <link rel="stylesheet" type="text/css" href="{% static 'css/site.css' %}" > {% endcomment %}
+    <title>WebmailUFC - {{request.titulo}}</title>
+</head>
+
+<body>
+    <div id="app" class="section">
+        <div class="container">
+            {% block base_template_block %}
+            {% endblock %}
+        </div>
+    </div>
+    {% comment %} <script type="module" src="{% static 'js/app.js' %}"></script> {% endcomment %}
+    <script src="{% static 'js/bundle.js' %}"></script>
+</html>

@@ -1,0 +1,79 @@
+{
+  "name": "webmailufc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "css-build": "node-sass --omit-source-map-url static/styles.scss static/css/styles.css",
+    "bundle": "set NODE_ENV=production&&browserify -p tinyify -e webmailufc/assets/js/app.js -g envify -r vue -r vee-validate -r buefy -r vue-select -r vue-phone-number-input -r vue-tour -r select2 -r axios > webmailufc/assets/js/bundle.js",
+    "bundle2": "set NODE_ENV=production&&browserify webmailufc/assets/js/app.js -p tinyify -g envify node_modules/vue node_modules/vee-validate node_modules/buefy node_modules/vue-select node_modules/vue-phone-number-input node_modules/vue-tour node_modules/select2 node_modules/axios --standalone Bundle > bundle.js",
+    "production": "set NODE_ENV=production&&browserify -t browserify-css -p tinyify -g envify webmailufc/assets/js/app.js -o webmailufc/assets/js/bundle.js",
+    "watch": "watchify webmailufc/assets/js/app.js -v -o webmailufc/assets/js/bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@gitlab.dsi:33268/elano.melo/webmailufc.git"
+  },
+  "author": "elano",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/cli": "^7.10.4",
+    "@babel/core": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "axios": "^0.19.2",
+    "babel-plugin-import": "^1.13.0",
+    "babel-plugin-module-alias": "^1.6.0",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "babel-plugin-transform-import-css": "^1.0.0-alpha.11",
+    "babel-plugin-transform-imports": "^2.0.0",
+    "babelify": "^10.0.0",
+    "browserify-css": "^0.15.0",
+    "buefy": "^0.8.20",
+    "css-modulesify": "^0.28.0",
+    "envify": "^4.1.0",
+    "jquery": "^3.5.1",
+    "kebab-case": "^1.0.0",
+    "lit-html": "^1.2.1",
+    "lodash": "^4.17.19",
+    "maz-ui": "^1.2.14",
+    "node-sass": "^4.14.1",
+    "portal-vue": "^2.1.7",
+    "postcss-image-inliner": "^4.0.2",
+    "postcss-inline-base64": "^5.0.0",
+    "postcss-inline-svg": "^4.1.0",
+    "postcss-url": "^8.0.0",
+    "sass-loader": "^8.0.2",
+    "select2": "^4.0.13",
+    "style-loader": "^1.2.1",
+    "tinyify": "^2.5.2",
+    "vee-validate": "^3.3.7",
+    "vue": "^2.6.11",
+    "vue-hot-reload-api": "^2.3.4",
+    "vue-phone-number-input": "^1.1.9",
+    "vue-select": "^3.10.5",
+    "vue-spinner": "^1.0.3",
+    "vue-tel-input": "^4.4.0",
+    "vue-tour": "^1.4.0",
+    "vuelidate": "^0.7.5",
+    "watchify": "^3.11.1"
+  },
+  "browserify-css": {
+    "autoInject": true,
+    "minify": true,
+    "rootDir": ".",
+    "inlineImages": {
+      "options": {
+        "limit": 0
+      }
+    },
+    "verbose": true
+  },
+  "browserify": {
+    "transform": [
+      [
+        "babelify"
+      ]
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block extrastyle %}
+
+<link href="{% static 'css/admin.css' %}" rel="stylesheet" type="text/css">
+
+{% if DEBUG %}
+<style>
+    body:before {
+        display: block !important;
+        line-height: 35px !important;
+        text-align: center !important;
+        font-weight: bold !important;
+        text-transform: uppercase !important;
+        color: white !important;
+        content: "{{ ENVIRONMENT_NAME }}";
+        background-color: {{ ENVIRONMENT_COLOR }} !important;
+    }
+</style>
+{% endif %}
+{% endblock %}
+
+
+{% block extrahead %}
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}" />
+{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><img src="{% static 'images/ufc_logo-removebg-preview.png' %}" ><a href="{% url 'admin:index' %}">{{ site_header|default:_('Django administration') }}</a></h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+

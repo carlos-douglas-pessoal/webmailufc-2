@@ -1,0 +1,38 @@
+#header {
+    background:#003A65 
+}
+
+div.breadcrumbs {
+    background: #00629C;
+}
+
+.module caption {
+    background: #00629C;
+}
+
+#footer {
+    clear: both;
+    padding: 5px !important;
+}
+
+.footer-admin {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: #000D16;
+    color: white;
+    text-align: center;
+}
+
+input[type=submit],input[type=button],
+.submit-row input, button, a.button{
+    background: #004B82;
+}
+/*
+.button.default, input[type=submit].default, .submit-row input.default {
+    background: #6693b4;
+}
+.module h2, .module caption, .inline-group h2 {
+    background: #6693b4;
+}*/
